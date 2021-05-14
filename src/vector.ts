@@ -2,14 +2,14 @@ export class Vector {
     private readonly buffer: Array<number>;
 
     constructor(x: number = 0, y: number = 0, z: number = 0) {
-        this.buffer = new Array<number>(x,y,z);
+        this.buffer = new Array<number>(x, y, z);
     }
 
     get x(): number {
         return this.buffer[0];
     }
 
-    set x(value:  number) {
+    set x(value: number) {
         this.buffer[0] = value;
     }
 
@@ -17,7 +17,7 @@ export class Vector {
         return this.buffer[1];
     }
 
-    set y(value:  number) {
+    set y(value: number) {
         this.buffer[1] = value;
     }
 
@@ -25,7 +25,7 @@ export class Vector {
         return this.buffer[2];
     }
 
-    set z(value:  number) {
+    set z(value: number) {
         this.buffer[2] = value;
     }
 
@@ -37,32 +37,48 @@ export class Vector {
         return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
     }
 
-    toString(): string {
-        return `(${this.x},${this.y},${this.z})`
-    }
-
     toUnitVector(): Vector {
-        return Vector.mulScalar(this, this.length());
+        return Vector.divScalar(this, this.length());
     }
 
     static add(lhs: Vector, rhs: Vector) {
         return new Vector(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z)
     }
 
+    add(rhs: Vector) {
+        return Vector.add(this, rhs);
+    }
+
     static sub(lhs: Vector, rhs: Vector): Vector {
         return new Vector(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z)
+    }
+
+    sub(rhs: Vector) {
+        return Vector.sub(this, rhs);
     }
 
     static mulScalar(v: Vector, k: number): Vector {
         return new Vector(v.x * k, v.y * k, v.z * k);
     }
 
+    mulScalar(k: number) {
+        return Vector.mulScalar(this, k);
+    }
+
     static divScalar(v: Vector, k: number): Vector {
         return this.mulScalar(v, 1 / k);
     }
 
+    divScalar(k: number) {
+        return Vector.divScalar(this, k);
+    }
+
     static dot(lhs: Vector, rhs: Vector): number {
         return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
+    }
+
+    dot(rhs: Vector) {
+        return Vector.dot(this, rhs);
     }
 
     static cross(lhs: Vector, rhs: Vector): Vector {
@@ -71,6 +87,14 @@ export class Vector {
             (lhs.z * rhs.x) - (lhs.x * rhs.z),
             (lhs.x * rhs.y) - (lhs.y * rhs.x),
         );
+    }
+
+    cross(rhs: Vector): Vector {
+        return Vector.cross(this, rhs);
+    }
+
+    toString(): string {
+        return `(${this.x},${this.y},${this.z})`
     }
 }
 

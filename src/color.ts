@@ -1,8 +1,8 @@
 export class Color {
-    private readonly buffer: Uint8ClampedArray;
+    private readonly buffer: Array<number>;
 
-    constructor(r: number = 0, g: number = 0, b: number = 0, a: number = 255) {
-        this.buffer = new Uint8ClampedArray([r * 255, g * 255, b * 255, a * 255]);
+    constructor(r: number = 0, g: number = 0, b: number = 0) {
+        this.buffer = new Array<number>(r, g, b, 255);
     }
 
     get r(): number {
@@ -38,19 +38,31 @@ export class Color {
     }
 
     static add(lhs: Color, rhs: Color): Color {
-        return new Color(lhs.r + rhs.r,lhs.g + rhs.g,lhs.b + rhs.b);
+        return new Color(lhs.r + rhs.r, lhs.g + rhs.g, lhs.b + rhs.b);
+    }
+
+    add(rhs: Color): Color {
+        return Color.add(this, rhs);
     }
 
     static sub(lhs: Color, rhs: Color): Color {
-        return new Color(lhs.r - rhs.r,lhs.g - rhs.g,lhs.b - rhs.b);
+        return new Color(lhs.r - rhs.r, lhs.g - rhs.g, lhs.b - rhs.b);
     }
 
-    static mulScalar(c: Color, k: number) {
-        return new Color(c.r * k, c.g * k, c.b * k, 1);
+    sub(rhs: Color): Color {
+        return Color.sub(this, rhs);
+    }
+
+    static mulScalar(c: Color, k: number): Color {
+        return new Color(c.r * k, c.g * k, c.b * k);
+    }
+
+    mulScalar(k: number): Color {
+        return Color.mulScalar(this, k);
     }
 
     toString(): string {
-        return `rgba(${this.r},${this.g},${this.b},${this.a})`;
+        return `rgba(${this.r * 255},${this.g * 255},${this.b * 255},${this.a})`;
     }
 }
 
