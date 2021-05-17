@@ -9,3 +9,7 @@ export function clamp(min: number, max: number, k: number): number {
 
     return k;
 }
+
+export function degreesToRadians(degrees: number) {
+    return degrees * (Math.PI / 180);
+}

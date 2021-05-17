@@ -1,5 +1,5 @@
 export class Vector {
-    private readonly buffer: Array<number>;
+    protected buffer: Array<number>;
 
     constructor(x: number = 0, y: number = 0, z: number = 0) {
         this.buffer = new Array<number>(x, y, z);
@@ -29,12 +29,41 @@ export class Vector {
         this.buffer[2] = value;
     }
 
+    get r(): number {
+        return this.buffer[0];
+    }
+
+    set r(value: number) {
+        this.buffer[0] = value;
+    }
+
+    get g(): number {
+        return this.buffer[1];
+    }
+
+    set g(value: number) {
+        this.buffer[1] = value;
+    }
+
+    get b(): number {
+        return this.buffer[2];
+    }
+
+    set b(value: number) {
+        this.buffer[2] = value;
+    }
+
+
     negate(): Vector {
         return new Vector(-this.x, -this.y, -this.z);
     }
 
     length(): number {
         return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
+    }
+
+    lengthSquared(): number {
+        return this.x * this.x + this.y * this.y + this.z * this.z;
     }
 
     toUnitVector(): Vector {
@@ -99,3 +128,4 @@ export class Vector {
 }
 
 export type Point = Vector;
+export type Color = Vector;

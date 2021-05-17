@@ -1,4 +1,4 @@
-import {Color} from "./color";
+import {Color} from "./vector";
 
 export class Canvas {
     private readonly imageData: ImageData;
@@ -20,7 +20,8 @@ export class Canvas {
         this._data[offset] = Math.trunc(color.r * 255);
         this._data[offset + 1] = Math.trunc(color.g * 255);
         this._data[offset + 2] = Math.trunc(color.b * 255);
-        this._data[offset + 3] = color.a;
+        this._data[offset + 3] = 255;
+        // Log.push(color.toString());
     }
 
     update() {
