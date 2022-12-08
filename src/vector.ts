@@ -1,7 +1,7 @@
 export class Vector {
-    protected buffer: Array<number>;
+    private buffer: Array<number>;
 
-    constructor(x: number = 0, y: number = 0, z: number = 0) {
+    constructor(x = 0, y = 0, z = 0) {
         this.buffer = new Array<number>(x, y, z);
     }
 

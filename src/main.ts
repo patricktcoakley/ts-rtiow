@@ -1,8 +1,8 @@
-import {Canvas} from "./canvas";
-import {Color, Vector} from "./vector";
-import {Ray} from './ray';
-import {HitRecord, Hittable, HittableList} from "./hittable";
-import {Sphere} from "./sphere";
+import { Color, Vector } from "./vector";
+import { HitRecord, Hittable, HittableList } from "./hittable";
+import { Canvas } from "./canvas";
+import { Ray } from './ray';
+import { Sphere } from "./sphere";
 
 const ImageWidth = 400;
 const ImageHeight = 200;
@@ -12,9 +12,8 @@ const Origin = new Vector(0, 0, 0);
 const LowerLeft = new Vector(-2.0, -1.0, -1.0);
 const Display = new Canvas('canvas', ImageWidth, ImageHeight);
 
-
 function rayColor(ray: Ray, world: Hittable): Color {
-    let record = new HitRecord();
+    const record = new HitRecord();
     if (world.hit(ray, 0, Number.MAX_VALUE, record)) {
         return Vector.mulScalar(
             Vector.add(record.normal, new Vector(1, 1, 1)),
@@ -43,6 +42,3 @@ for (let y = ImageHeight - 1; y >= 0; --y) {
 }
 
 Display.update();
-
-
-

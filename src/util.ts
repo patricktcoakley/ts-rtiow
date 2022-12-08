@@ -13,3 +13,7 @@ export function clamp(min: number, max: number, k: number): number {
 export function degreesToRadians(degrees: number) {
     return degrees * (Math.PI / 180);
 }
+
+export function toString(target: Record<string, unknown>): string {
+    return Object.getOwnPropertyNames(target).toString();
+}

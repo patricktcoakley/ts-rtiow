@@ -1,6 +1,6 @@
-import {HitRecord, Hittable} from "./hittable";
-import {Point, Vector} from "./vector";
-import {Ray} from "./ray";
+import { HitRecord, Hittable } from "./hittable";
+import { Point, Vector } from "./vector";
+import { Ray } from "./ray";
 
 export class Sphere implements Hittable {
     center: Point;

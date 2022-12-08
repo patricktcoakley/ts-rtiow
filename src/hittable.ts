@@ -1,5 +1,5 @@
-import {Point, Vector} from "./vector";
-import {Ray} from "./ray";
+import { Point, Vector } from "./vector";
+import { Ray } from "./ray";
 
 export class HitRecord {
     point: Point;
@@ -7,7 +7,7 @@ export class HitRecord {
     t: number;
     frontFace: boolean;
 
-    constructor(point: Point = new Vector(0, 0, 0), normal: Vector = new Vector(0, 0, 0), t: number = 0, frontFace: boolean = false) {
+    constructor(point: Point = new Vector(0, 0, 0), normal: Vector = new Vector(0, 0, 0), t = 0, frontFace = false) {
         this.point = point;
         this.normal = normal;
         this.t = t;
@@ -39,7 +39,7 @@ export class HittableList implements Hittable {
         let hitAnything = false;
         let closest = tMax;
 
-        for (let object of this.objects) {
+        for (const object of this.objects) {
             if (object.hit(ray, tMin, closest, record)) {
                 hitAnything = true;
                 closest = record.t;

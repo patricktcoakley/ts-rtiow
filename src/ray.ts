@@ -1,4 +1,4 @@
-import {Point, Vector} from "./vector";
+import { Point, Vector } from "./vector";
 
 export class Ray {
     origin: Point;
